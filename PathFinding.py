@@ -2,8 +2,6 @@ import DisjointSet
 import heapq
 from collections import defaultdict
 
-graph1 = [[-1, 400, -1, 2000],[400, -1, 400, -1],[-1, 400, -1, 1], [2000, -1, 1, -1]]
-
 def edgeGenerate(graph):
     edgeDict = defaultdict(list)
 
@@ -25,6 +23,16 @@ def weightGenerate(graph):
             weightDict[(vertice, neighbor)] = graph[vertice][neighbor]
     
     return weightDict
+
+def pathGenerate(visited, start, end):
+    nodeList = []
+    curr = start
+
+    while curr != -1:
+        nodeList.append(curr)
+        curr = visited[curr]
+
+    return nodeList
 
 def findPath(graph, start, end):
     ds = DisjointSet.DisjointSet(len(graph))
@@ -52,4 +60,5 @@ def findPath(graph, start, end):
                 heapq.heappush(edgeHeap, [-weight, toNode, neighbor])
 
     print(visitedNodes)
+    print(pathGenerate(visitedNodes, start, end))
     return visitedNodes
