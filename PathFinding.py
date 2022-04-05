@@ -36,11 +36,9 @@ def findPath(graph, start, end):
     for neighbor in edgeDict[end]:
         weight = weightDict[(end, neighbor)]
         heapq.heappush(edgeHeap, [-weight, end, neighbor])
-    print(edgeHeap)
     
     while start not in visitedNodes and edgeHeap:
         weight, fromNode, toNode = heapq.heappop(edgeHeap)
-        print([fromNode, toNode])
 
         if ds.isJoint(end, toNode):
             continue

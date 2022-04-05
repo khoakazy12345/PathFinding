@@ -8,6 +8,10 @@ class RandomGraph:
             print('Vertice limit exceeded. Pick a smaller number.')
             return
         
+        if vertice1 == vertice2:
+            print("Two vertices have to be different")
+            return
+        
         self.matrix[vertice1][vertice2] = weight
         self.matrix[vertice2][vertice1] = weight
     
