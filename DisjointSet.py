@@ -1,9 +1,17 @@
 class DisjointSet:
-    def __init__(self, vertices):
+    def __init__(self, length):
         self.unionDict = {}
 
-        for vertice in vertices:
+        for vertice in range (length):
             self.unionDict[vertice] = -1
+        
+    def isJoint(self, vertice1, vertice2):
+        parent1 = self.find(vertice1)
+        parent2 = self.find(vertice2)
+
+        if parent1 == parent2:
+            return True
+        return False
     
     def find(self, vertice):
         curr = vertice
@@ -14,12 +22,11 @@ class DisjointSet:
         return curr      
         
     def union(self, vertice1, vertice2):        
+        if self.isJoint(vertice1, vertice2):
+            return
+
         parent1 = self.find(vertice1)
         parent2 = self.find(vertice2)
-
-        if parent1 == parent2:
-            print("These are in the same set")
-            return
         
         size1 = abs(self.unionDict[parent1])
         size2 = abs(self.unionDict[parent2])
@@ -30,20 +37,3 @@ class DisjointSet:
         else:
             self.unionDict[parent2] = parent1
             self.unionDict[parent1] = -(size1 + size2)
-
-ds = DisjointSet([1,2,3,4,5,6,7,8])
-print(ds.unionDict)
-ds.union(1,2)
-print(ds.unionDict)
-ds.union(3,4)
-print(ds.unionDict)
-ds.union(5,6)
-print(ds.unionDict)
-ds.union(7,8)
-print(ds.unionDict)
-ds.union(2,4)
-print(ds.unionDict)
-ds.union(2,5)
-print(ds.unionDict)
-ds.union(5,7)
-print(ds.unionDict)

@@ -1,0 +1,18 @@
+import DisjointSet
+
+ds = DisjointSet.DisjointSet(9)
+print(ds.unionDict)
+ds.union(1,2)
+print(ds.unionDict)
+ds.union(3,4)
+print(ds.unionDict)
+ds.union(5,6)
+print(ds.unionDict)
+ds.union(7,8)
+print(ds.unionDict)
+ds.union(2,4)
+print(ds.unionDict)
+ds.union(2,5)
+print(ds.unionDict)
+ds.union(5,7)
+print(ds.unionDict)
