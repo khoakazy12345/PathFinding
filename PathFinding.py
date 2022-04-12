@@ -24,11 +24,11 @@ def weightGenerate(graph):
     
     return weightDict
 
-def pathGenerate(visited, start, end):
+def pathGenerate(visited, start):
     nodeList = []
     curr = start
 
-    while curr != -1:
+    while curr != -1 and curr in visited:
         nodeList.append(curr)
         curr = visited[curr]
 
@@ -59,6 +59,4 @@ def findPath(graph, start, end):
                 weight = weightDict[(toNode, neighbor)]
                 heapq.heappush(edgeHeap, [-weight, toNode, neighbor])
 
-    print(visitedNodes)
-    print(pathGenerate(visitedNodes, start, end))
-    return visitedNodes
+    return pathGenerate(visitedNodes, start)
