@@ -55,8 +55,33 @@ def findPath(graph, start, end):
         ds.union(end, toNode)
 
         for neighbor in edgeDict[toNode]:
-            if neighbor not in visitedNodes:
-                weight = weightDict[(toNode, neighbor)]
-                heapq.heappush(edgeHeap, [-weight, toNode, neighbor])
+            weight = weightDict[(toNode, neighbor)]
+            heapq.heappush(edgeHeap, [-weight, toNode, neighbor])
+
+    return pathGenerate(visitedNodes, start)
+
+def findPathNew(graph, start, end):
+    ds = DisjointSet.DisjointSet(len(graph))
+    edgeDict = edgeGenerate(graph)
+    weightDict = weightGenerate(graph)  
+    visitedNodes = {end: -1}
+    edgeHeap = []
+
+    for neighbor in edgeDict[end]:
+        weight = weightDict[(end, neighbor)]
+        heapq.heappush(edgeHeap, [-weight, end, neighbor])
+    
+    while start not in visitedNodes and edgeHeap:
+        weight, fromNode, toNode = heapq.heappop(edgeHeap)
+
+        if ds.isJoint(end, toNode):
+            continue
+        
+        visitedNodes[toNode] = fromNode
+        ds.union(end, toNode)
+
+        for neighbor in edgeDict[toNode]:
+            weight = weightDict[(toNode, neighbor)]
+            heapq.heappush(edgeHeap, [-weight, toNode, neighbor])
 
     return pathGenerate(visitedNodes, start)
