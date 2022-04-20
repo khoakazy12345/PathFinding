@@ -57,5 +57,9 @@ def findPath(graph, start, end):
         for neighbor in edgeDict[toNode]:
             weight = weightDict[(toNode, neighbor)]
             heapq.heappush(edgeHeap, [-weight, toNode, neighbor])
+    
+    if start not in visitedNodes:
+        print('Path not existed. Graph possibly disconnected')
+        return
 
     return pathGenerate(visitedNodes, start)
