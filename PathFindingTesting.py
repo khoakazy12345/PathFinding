@@ -28,7 +28,7 @@ import random
 # PathFinding.findPath(sampleGraph2.getGraph(), 4, 6)
 for i in range (5):
     initTime = datetime.now()
-    size = 100
+    size = 500
 
     sampleGraph3 = SampleGraph.RandomGraph(size)
     sampleGraph3.generateGraph(0.5, 100, 400)
@@ -37,10 +37,8 @@ for i in range (5):
     start = random.randint(0, size - 1)
     end = random.randint(0, size - 1)
     result = PathFinding.findPath(sampleGraph3.getGraph(), start, end)
-    result2 = PathFinding.findPathNew(sampleGraph3.getGraph(), start, end)
     excutionTime = datetime.now()
 
     print((generateTime - initTime).microseconds)
     print((excutionTime - generateTime).microseconds)
-    print(result == result2)
 
